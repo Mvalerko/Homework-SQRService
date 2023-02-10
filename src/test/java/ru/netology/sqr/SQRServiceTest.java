@@ -10,27 +10,20 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class SQRServiceTest {
 
     @ParameterizedTest
-//    @CsvSource({
-//            "150,5000,true",
-//            "50,5000,false"
-//    })
-    @CsvFileSource(files="src/test/resources/SQRServiceTest.csv")
-    public void testRegisteredUnderLimit(int start, int end, int expected) {
+
+    @CsvFileSource(files="src/test/resources/SQRServiceTest.csv") //Указываем путь к csv файлу, который содержит
+    // значения для прохождения автотестов
+    // В параметры метода вносим из файла SQRServiceTest.csv
+
+
+    public void testSQRServiceParam (int start, int end, int expected)  {
+        //знакомим наш тестовый метод с классом SQRService
         SQRService service = new SQRService();
-
-        //int expected = 150;
+        // запускаем метод numFallingRange с параметрами из SQRServiceTest.csv. Полученный результат записываем в
+        // actual
         int actual = service.numFallingRange(start, end);
-
+        // полученный actual сверяем с expected из все того же SQRServiceTest.csv
         Assertions.assertEquals(expected, actual);
     }
 
-//    @Test
-//    public void testUnregisteredUnderLimit() {
-//        BonusService service = new BonusService();
-//
-//        int expected = 50;
-//        int actual = service.calcBonus(5_000, false);
-//
-//        Assertions.assertEquals(expected, actual);
-//    }
 }
